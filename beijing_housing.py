@@ -1,6 +1,6 @@
 from sklearn.metrics import r2_score,make_scorer
 from sklearn.model_selection import train_test_split
-from sklearn.cross_validation import KFold
+from sklearn.model_selection import KFold
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.model_selection import GridSearchCV
 
@@ -23,7 +23,7 @@ def performance_metric(y_true, y_predict):
 
 
 def fit_model(X,y):
-    cv = KFold(len(X), n_folds=8, shuffle=True) #cross validator
+    cv = KFold(n_splits=8, shuffle=True) #cross validator
     reg= DecisionTreeRegressor()                #regressor
     params={'max_depth':np.arange(1,11)}        #parameters to opitaml
     scoring_fnc=make_scorer(performance_metric)  #scoring function
